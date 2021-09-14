@@ -82,3 +82,4 @@ resource dashboardApp 'Microsoft.Web/sites@2020-12-01' = {
 
 }
 
+output fhirDashboardAppName string = dashboardApp.name
