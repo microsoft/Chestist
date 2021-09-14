@@ -11,24 +11,21 @@ param aadAudience string = 'https://chestist-fhir-api.azurehealthcareapis.com'
 resource dashboardAppPlan 'Microsoft.Web/serverfarms@2021-01-15' = {
   name: dashboardAppPlanName
   location: location
-  kind: 'linux'
+  kind: 'app'
   sku: {
     name: 'B1'
     tier: 'Basic'
-  }
-  properties: {
-    reserved: true
   }
 }
 
 resource dashboardApp 'Microsoft.Web/sites@2020-12-01' = {
   name: dashboardAppName
   location: location
-  kind: 'app,linux'
+  kind: 'app'
   properties: {
     serverFarmId: dashboardAppPlan.id
     siteConfig: {
-      linuxFxVersion: 'PHP|8.0'
+      netFrameworkVersion: 'v5.0'
       appSettings: [
         {
           name: 'MICROSOFT_PROVIDER_AUTHENTICATION_SECRET'
@@ -63,6 +60,7 @@ resource dashboardApp 'Microsoft.Web/sites@2020-12-01' = {
           login: {
             loginParameters: [
               'resource=${aadAudience}'
+              'scope=openid offline_access'
             ]
           }
         }
