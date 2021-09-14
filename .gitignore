@@ -132,4 +132,4 @@ dmypy.json
 .pyre/
 
 # Azure
-.azureauth.json
+.azureauth
