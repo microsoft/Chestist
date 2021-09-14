@@ -24,10 +24,11 @@ resource dashboardAppPlan 'Microsoft.Web/serverfarms@2021-01-15' = {
 resource dashboardApp 'Microsoft.Web/sites@2020-12-01' = {
   name: dashboardAppName
   location: location
+  kind: 'app,linux'
   properties: {
     serverFarmId: dashboardAppPlan.id
     siteConfig: {
-      linuxFxVersion: 'NODE|14-lts'
+      linuxFxVersion: 'PHP|8.0'
       appSettings: [
         {
           name: 'MICROSOFT_PROVIDER_AUTHENTICATION_SECRET'

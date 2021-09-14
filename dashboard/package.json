@@ -5,7 +5,7 @@
   "scripts": {
     "start": "http-server -p 9090 -c-1"
   },
-  "dependencies": {
+  "dev-dependencies": {
     "http-server": "^0.10.0"
   }
 }
