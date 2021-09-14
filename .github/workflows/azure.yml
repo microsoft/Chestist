@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 env:
   AZURE_WEBAPP_PACKAGE_PATH: './dashboard'
@@ -28,6 +29,7 @@ jobs:
     - name: Deploy BICEP Template
       id: deploy-bicep
       uses: azure/arm-deploy@v1
+      failOnStdErr: false
       with:
         subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ env.AZURE_RESOURCE_GROUP }}
