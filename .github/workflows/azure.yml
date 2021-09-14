@@ -28,13 +28,13 @@ jobs:
     # Deployment of template    
     - name: Deploy BICEP Template
       id: deploy-bicep
-      uses: azure/arm-deploy@v1
-      failOnStdErr: false
+      uses: azure/arm-deploy@v1      
       with:
         subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
         resourceGroupName: ${{ env.AZURE_RESOURCE_GROUP }}
         template: ./deploy/modules/dashboard.bicep  # Set this to the location of your template file
         parameters: 'aadClientSecret=${{ secrets.FHIR_CLIENT_SECRET }}' # Set this to the location of your parameters file
+        failOnStdErr: false
 
 
   build-and-deploy:
