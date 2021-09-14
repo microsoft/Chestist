@@ -1,5 +1,5 @@
 {
-    "FhirServerUrl": "https://url-for-fhir.azurehealthcareapis.com",
+    "FhirServerUrl": "https://chestist-fhir-api.azurehealthcareapis.com",
     "SmartOnFhirApps": [
         {
             "DisplayName": "Growth Chart",
