@@ -3,7 +3,7 @@
     "SmartOnFhirApps": [
         {
             "DisplayName": "Growth Chart",
-            "LaunchUrl": "https://url-for-growth.azurewebsites.net/launch.html"
+            "LaunchUrl": "https://zeckcg7jlal6q-growth-chart-app.azurewebsites.net/launch.html"
         },
         {
             "DisplayName": "Medications",
