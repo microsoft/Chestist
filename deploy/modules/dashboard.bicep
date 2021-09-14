@@ -48,6 +48,7 @@ resource dashboardApp 'Microsoft.Web/sites@2020-12-01' = {
       globalValidation: {
         requireAuthentication: true
         unauthenticatedClientAction: 'RedirectToLoginPage'
+        redirectToProvider: 'azureactivedirectory'
       }
       identityProviders: {
         azureActiveDirectory: {
@@ -63,6 +64,17 @@ resource dashboardApp 'Microsoft.Web/sites@2020-12-01' = {
               'scope=openid offline_access'
             ]
           }
+        }
+      }      
+      login: {
+        tokenStore: {
+          enabled: true
+        }
+      }
+      httpSettings: {
+        requireHttps: true
+        routes: {
+          apiPrefix: '/.auth'
         }
       }
     }
