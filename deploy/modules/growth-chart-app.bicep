@@ -1,5 +1,5 @@
 param siteName string = '${uniqueString(resourceGroup().id)}-growth-chart-app'
-param clientId string = '8a097d51-6cb3-49b7-8e2a-d9d3ad192584'
+param clientId string = '20560ea5-f224-4658-b667-4e6bab935c85'
 param imageName string = 'growth-chart-app:v1.0.0'
 param location string = resourceGroup().location
 
