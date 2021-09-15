@@ -7,7 +7,7 @@
         },
         {
             "DisplayName": "Chestist",
-            "LaunchUrl": "https://url-for-meds.azurewebsites.net/launch.html"
+            "LaunchUrl": "https://zeckcg7jlal6q-chestist-smart-app.azurewebsites.net"
         }
     ]
 }

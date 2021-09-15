@@ -4,11 +4,12 @@ param imageName string
 param location string
 param appPlanName string
 param registryName string
+param localAcr bool
 
 var acrPullRoleDefinitionId = '/subscriptions/${subscription().subscriptionId}/providers/Microsoft.Authorization/roleDefinitions/7f951dda-4ed3-4680-a7ca-43fe172d538d'
 var registryLoginUri = '${registryName}.azurecr.io'
 
-resource acr 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' existing = {
+resource acr 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' existing = if (localAcr) {
   name: registryName
 }
 
@@ -28,11 +29,7 @@ resource growthApp 'Microsoft.Web/sites@2021-01-15' = {
         {
           name: 'CLIENT_ID'
           value: clientId
-        }
-        {
-          name: 'DOCKER_ENABLE_CI'
-          value: 'true'
-        }
+        }        
       ]
       linuxFxVersion: 'DOCKER|${registryLoginUri}/${imageName}'
       acrUseManagedIdentityCreds: true
@@ -42,7 +39,7 @@ resource growthApp 'Microsoft.Web/sites@2021-01-15' = {
   }
 }
 
-resource rbacPull 'Microsoft.Authorization/roleAssignments@2015-07-01' = {
+resource rbacPull 'Microsoft.Authorization/roleAssignments@2015-07-01' = if (localAcr) {
   dependsOn: [
     growthApp
   ]
