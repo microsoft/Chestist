@@ -6,8 +6,8 @@
             "LaunchUrl": "https://zeckcg7jlal6q-growth-chart-app.azurewebsites.net/launch.html"
         },
         {
-            "DisplayName": "Medications",
-            "LaunchUrl": "https://url-for-meds.azurewebsites.net/launch.html"
+            "DisplayName": "Chestist",
+            "LaunchUrl": "https://zeckcg7jlal6q-chestist-smart-app.azurewebsites.net"
         }
     ]
 }
