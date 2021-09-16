@@ -1,12 +1,12 @@
-param dashboardAppName string = '${uniqueString(resourceGroup().id)}-fhir-dashboard'
-param dashboardAppPlanName string = '${uniqueString(resourceGroup().id)}-app-plan'
-param location string = resourceGroup().location
-param aadClientId string = '8a097d51-6cb3-49b7-8e2a-d9d3ad192584'
+param dashboardAppName string
+param dashboardAppPlanName string
+param location string
+param aadClientId string
 @secure()
 param aadClientSecret string
 @description('OAuth Authority')
-param aadAuthority string = 'https://login.microsoftonline.com/c2c1d092-cf24-4636-a284-203c93601579'
-param aadAudience string = 'https://chestist-fhir-api.azurehealthcareapis.com'
+param aadAuthority string
+param aadAudience string
 
 resource dashboardAppPlan 'Microsoft.Web/serverfarms@2021-01-15' = {
   name: dashboardAppPlanName
