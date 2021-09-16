@@ -12,8 +12,11 @@ env:
 
 jobs:
   docker-build:
-    name: Build and push docker SMART apps
+    name: Build and push chestist-smart-app
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: chestist-smart-app
     steps:
     - 
       name: Azure Login
@@ -23,6 +26,14 @@ jobs:
     -
       name: Checkout
       uses: actions/checkout@v2
+    - 
+      uses: borales/actions-yarn@v2.3.0
+      with:
+        cmd: install # will run `yarn install` command
+    - 
+      uses: borales/actions-yarn@v2.3.0
+      with:
+        cmd: build # will run `yarn build` command
     -
       name: Set up QEMU
       uses: docker/setup-qemu-action@v1
@@ -32,15 +43,14 @@ jobs:
     -
       name: Login to Azure ACR
       run: |
-        az acr login --name ${{ env.AZURE_REGISTRY_NAME }}
+        az acr login --name ${{ env.AZURE_REGISTRY_NAME }}        
     -
       name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: ./chestist-smart-app
+        context: .
         push: true
-        tags: '${{ env.AZURE_REGISTRY_NAME }}/chestist-smart-app:${{ github.sha }}'
-    
+        tags: '${{ env.AZURE_REGISTRY_NAME }}.azurecr.io/chestist-smart-app:${{ github.sha }}'   
 
   provision:
     name: Provision Azure Webapp Resources
