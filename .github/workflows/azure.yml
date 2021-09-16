@@ -45,6 +45,7 @@ jobs:
   provision:
     name: Provision Azure Webapp Resources
     runs-on: ubuntu-latest
+    needs: docker-build
     outputs: 
       azure-webapp-name: ${{ steps.deploy-bicep.outputs.fhirDashboardAppName }}
     steps:                
