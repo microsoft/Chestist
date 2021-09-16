@@ -70,3 +70,4 @@ module dashboardApp 'modules/dashboard.bicep' = {
   }
 }
 
+output fhirDashboardAppName string = dashboardApp.outputs.fhirDashboardAppName
