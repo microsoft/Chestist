@@ -28,7 +28,7 @@ const PatientRecord: FC<PatientRecordProps> = ({ resources }) => {
   return (
     <div>
       <PatientVisualizer patient={patient} />
-      {/* <ConditionsVisualizer rows={getResourceByType(resources, 'Condition')} />
+      <ConditionsVisualizer rows={getResourceByType(resources, 'Condition')} />
       <ObservationsVisualizer rows={getResourceByType(resources, 'Observation')} />
       <ReportsVisualizer rows={getResourceByType(resources, 'DiagnosticReport')} />
       <MedicationsVisualizer rows={getResourceByType(resources, 'MedicationRequest')} />
@@ -36,7 +36,7 @@ const PatientRecord: FC<PatientRecordProps> = ({ resources }) => {
       <CarePlansVisualizer rows={getResourceByType(resources, 'CarePlan')} />
       <ProceduresVisualizer rows={getResourceByType(resources, 'Procedure')} />
       <EncountersVisualizer rows={getResourceByType(resources, 'Encounter')} />
-      <ImmunizationsVisualizer rows={getResourceByType(resources, 'Immunization')} /> */}
+      <ImmunizationsVisualizer rows={getResourceByType(resources, 'Immunization')} />
     </div>
   );
 };

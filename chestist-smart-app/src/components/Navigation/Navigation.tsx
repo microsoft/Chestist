@@ -32,13 +32,13 @@ const Navigation: FC<{}> = () => {
       </div>
 
       <div className={classes['navigation__right-panel']}>
-        {/* <DropDown
+        <DropDown
           label="Pathway:"
           id="patient-view"
           options={pathwayOptions}
           selectedValue={pathway}
           onChange={onChangeHandler}
-        /> */}
+        />
       </div>
     </nav>
   );
