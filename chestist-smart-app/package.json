@@ -17,6 +17,7 @@
     "fhir-visualizers": "^0.0.2",
     "fhirclient": "^2.3.10",
     "node-sass": "^4.14.1",
+    "ohif-core": "^0.11.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-fontawesome": "^1.7.1",

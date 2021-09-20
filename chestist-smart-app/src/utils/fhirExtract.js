@@ -45,7 +45,7 @@ function getPatientRecord(client) {
             supportedResources.push(filters[0]);
           }
         } else if (resource.searchParam) {
-          const filters = resource.searchParams.filter(target => {
+          const filters = resource.searchParam.filter(target => {
             return target.name === `patient` || target.name === `subject`;
           });
           if (filters.length > 0) {
