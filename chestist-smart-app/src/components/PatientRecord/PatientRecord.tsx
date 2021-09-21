@@ -4,6 +4,7 @@ import { usePatient } from '../PatientProvider';
 import {
   EncountersVisualizer,
   ObservationsVisualizer,
+  MediaVisualizer,
   PatientVisualizer
 } from 'fhir-visualizers';
 
@@ -21,6 +22,7 @@ const PatientRecord: FC<PatientRecordProps> = ({ resources }) => {
   return (
     <div>
       <PatientVisualizer patient={patient} />
+      <MediaVisualizer rows={getResourceByType(resources, 'Media')} />
       <ObservationsVisualizer rows={getResourceByType(resources, 'Observation')} />
       <EncountersVisualizer rows={getResourceByType(resources, 'Encounter')} />
     </div>

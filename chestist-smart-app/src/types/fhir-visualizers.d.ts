@@ -19,4 +19,5 @@ declare module 'fhir-visualizers' {
   export class ProceduresVisualizer extends Component<RowProps> {}
   export class ReportsVisualizer extends Component<RowProps> {}
   export class AllergiesVisualizer extends Component<RowProps> {}
+  export class MediaVisualizer extends Component<RowProps> {}
 }
