@@ -14,7 +14,7 @@
     "@types/react-dom": "^16.9.9",
     "@types/react-select": "^3.0.26",
     "fhir-mapper": "^3.1.2",
-    "fhir-visualizers": "^0.0.2",
+    "fhir-visualizers": "pjirsa/fhir-visualizers",
     "fhirclient": "^2.3.10",
     "node-sass": "^4.14.1",
     "ohif-core": "^0.11.1",
