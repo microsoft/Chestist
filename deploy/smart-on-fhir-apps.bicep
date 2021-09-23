@@ -2,6 +2,8 @@ param clientId string = '20560ea5-f224-4658-b667-4e6bab935c85'
 param growthChartImageName string = 'growth-chart-app:v1.0.0'
 param chestistImageName string = 'chestist-smart-app:v1.0.0'
 param location string = resourceGroup().location
+param imageStorageAccountName string = 'chestistdemo'
+param imageStoreContainerName string = 'images'
 
 param dashboardAppName string = '${uniqueString(resourceGroup().id)}-fhir-dashboard'
 param dashboardAppPlanName string = '${uniqueString(resourceGroup().id)}-app-plan'
@@ -17,6 +19,11 @@ var growthChartSiteName = '${uniqueString(resourceGroup().id)}-growth-chart-app'
 var chestistSiteName = '${uniqueString(resourceGroup().id)}-chestist-app'
 var growChartRegistryName = 'healthplatformregistry'
 var chestistRegistryName = 'chestistzec'
+var imageStoreConnectionString = 'DefaultEndpointsProtocol=https;AccountName=${imageStore.name};EndpointSuffix=${environment().suffixes.storage};AccountKey=${listKeys(imageStore.id, imageStore.apiVersion).keys[0].value}'
+
+resource imageStore 'Microsoft.Storage/storageAccounts@2021-04-01' existing = {
+  name: imageStorageAccountName
+}
 
 resource smartAppPlan 'Microsoft.Web/serverfarms@2021-01-15' = {
   name: appPlanName
@@ -70,4 +77,16 @@ module dashboardApp 'modules/dashboard.bicep' = {
   }
 }
 
+module imageApi 'modules/image-api.bicep' = {
+  name: 'Image-Api'
+  params: {
+    appPlanName: smartAppPlan.name
+    functionAppName: 'images-func-${uniqueString(resourceGroup().id)}'
+    location: location
+    imageStoreConnStr: imageStoreConnectionString
+    imageStoreContainer: imageStoreContainerName
+  }
+}
+
 output fhirDashboardAppName string = dashboardApp.outputs.fhirDashboardAppName
+output imageApiFuncAppName string = imageApi.outputs.imageApiFuncAppName

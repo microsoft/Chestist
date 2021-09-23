@@ -58,6 +58,7 @@ jobs:
     needs: docker-build
     outputs: 
       azure-webapp-name: ${{ steps.deploy-bicep.outputs.fhirDashboardAppName }}
+      imageapi-func-name: ${{ steps.deploy-bicep.outputs.imageApiFuncAppName }}
     steps:                
     - name: Azure Login
       uses: azure/login@v1
@@ -80,8 +81,8 @@ jobs:
         failOnStdErr: false
 
 
-  build-and-deploy:
-    name: Build and Deploy
+  build-and-deploy-dashboard:
+    name: Build and Deploy Dashboard
     runs-on: ubuntu-latest   
     needs: provision 
     environment: production
@@ -96,3 +97,38 @@ jobs:
       with:
         app-name: ${{ needs.provision.outputs.azure-webapp-name }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+  build-and-deploy-function:
+    name: Build and Deploy Image API
+    runs-on: ubuntu-latest
+    needs: provision
+    environment: production
+    env:
+      AZURE_FUNCTIONAPP_NAME: ${{ needs.provision.outputs.imageapi-func-name }}
+      AZURE_FUNCTIONAPP_PATH: 'Chestist.Imaging.Api'
+      DOTNET_VERSION: '3.1'
+    steps:
+    - name: Az Login
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - uses: actions/checkout@v2
+
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: 'Resolve Project Dependencies Using Dotnet'
+      shell: bash
+      run: |
+        pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
+        dotnet build --configuration Release --output ./output
+        popd
+
+    - name: 'Run Azure Functions Action'
+      uses: Azure/functions-action@v1
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
