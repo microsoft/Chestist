@@ -1,14 +1,10 @@
-# Project
+# Chestist
+This project uses a sample dataset of chest X-rays from the NIH to train a CNN model. The goal is for the model to learn how to detect anomolies and areas of interest.
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
-
-As the maintainer of this project, please make a few updates:
-
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+Other components of the solution include:
+- Sample EMR dashboard to view patient details
+- Chestist web interface SMART on FHIR app to work with Chestist data in the context of a selected patient
+- Imaging-API Azure Function to securely fetch images from an Azure Storage account
 
 ## Contributing
 
