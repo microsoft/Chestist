@@ -52,7 +52,7 @@ const BlobView: FC<{}> = () => {
                             <td>{x.name}</td>
                             <td>{x.properties.contentLength}</td>
                             <td>
-                                <img height="200" width="200" src={'https://images-func-zeckcg7jlal6q.azurewebsites.net/api/image/' + x.name} />
+                                <img height="200" width="200" alt={x.name} src={'https://images-func-zeckcg7jlal6q.azurewebsites.net/api/image/' + x.name} />
                             </td>
                         </tr>
                     })
