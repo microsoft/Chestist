@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import { usePatient } from '../PatientProvider';
 
 import {
-  EncountersVisualizer,
-  ObservationsVisualizer,
   MediaVisualizer,
   PatientVisualizer
 } from 'fhir-visualizers';
+
+import BlobView from '../BlobView';
 
 type PatientRecordProps = {
   resources: ReadonlyArray<Record<string, any>>;
@@ -22,9 +22,8 @@ const PatientRecord: FC<PatientRecordProps> = ({ resources }) => {
   return (
     <div>
       <PatientVisualizer patient={patient} />
+      <BlobView />
       <MediaVisualizer rows={getResourceByType(resources, 'Media')} />
-      <ObservationsVisualizer rows={getResourceByType(resources, 'Observation')} />
-      <EncountersVisualizer rows={getResourceByType(resources, 'Encounter')} />
     </div>
   );
 };
