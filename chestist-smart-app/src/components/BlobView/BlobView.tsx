@@ -41,6 +41,7 @@ const BlobView: FC<{}> = () => {
             <table className="table table-sm table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Image Name</th>
                         <th>Size</th>
                         <th>Thumbnail</th>
@@ -49,6 +50,7 @@ const BlobView: FC<{}> = () => {
                 <tbody>{
                     blobList.map((x, i) => {
                         return <tr key={i}>
+                            <td><input type="checkbox" id={x.name}/></td>
                             <td>{x.name}</td>
                             <td>{x.properties.contentLength}</td>
                             <td>
