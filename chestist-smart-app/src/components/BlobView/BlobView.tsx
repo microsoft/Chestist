@@ -36,7 +36,7 @@ const BlobView: FC<BlobViewProps> = (props) => {
         }
 
         fetchData();
-    }, []);
+    }, [props]);
 
     return (
         <div>
