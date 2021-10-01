@@ -42,26 +42,27 @@ const BlobView: FC<BlobViewProps> = (props) => {
         <div>
             <div className="health-record__header">
                 <div className="header-title">Images from Storage</div>
+                <div><button className="button">Analyze</button></div>
                 <div className="header-divider"></div>
             </div>
             <table className="table table-sm table-hover">
                 <thead>
                     <tr>
                         <th></th>
+                        <th>Thumbnail</th>
                         <th>Image Name</th>
                         <th>Size</th>
-                        <th>Thumbnail</th>
                     </tr>
                 </thead>
                 <tbody>{
                     blobList.map((x, i) => {
                         return <tr key={i}>
                             <td><input type="checkbox" id={x.name}/></td>
-                            <td>{x.name}</td>
-                            <td>{x.properties.contentLength}</td>
                             <td>
                                 <img height="100" width="100" alt={x.name} src={props.imageFuncUrl + x.name} />
                             </td>
+                            <td>{x.name}</td>
+                            <td>{x.properties.contentLength}</td>                            
                         </tr>
                     })
                 }
