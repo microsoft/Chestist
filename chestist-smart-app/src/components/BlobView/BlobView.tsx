@@ -2,18 +2,24 @@ import React, { FC, useState, useEffect } from 'react';
 import { InteractiveBrowserCredential } from '@azure/identity';
 import { BlobServiceClient, BlobItem } from '@azure/storage-blob';
 
+type BlobViewProps = {
+    clientId: string;
+    tenantId: string;
+    storageAccount: string;
+    imageFuncUrl: string;
+}
 
-const BlobView: FC<{}> = () => {
+const BlobView: FC<BlobViewProps> = (props) => {
     const [blobList, setBlobList] = useState<Array<BlobItem>>([]);
 
     useEffect(() => {
         const signInOptions = {
-            clientId: "8a097d51-6cb3-49b7-8e2a-d9d3ad192584",
-            tenantId: "c2c1d092-cf24-4636-a284-203c93601579"
+            clientId: props.clientId,
+            tenantId: props.tenantId
         }
 
         const blobStorageClient = new BlobServiceClient(
-            "https://chestistdemo.blob.core.windows.net/",
+            `https://${props.storageAccount}.blob.core.windows.net/`,
             new InteractiveBrowserCredential(signInOptions)
         )
 
@@ -41,6 +47,7 @@ const BlobView: FC<{}> = () => {
             <table className="table table-sm table-hover">
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Image Name</th>
                         <th>Size</th>
                         <th>Thumbnail</th>
@@ -49,10 +56,11 @@ const BlobView: FC<{}> = () => {
                 <tbody>{
                     blobList.map((x, i) => {
                         return <tr key={i}>
+                            <td><input type="checkbox" id={x.name}/></td>
                             <td>{x.name}</td>
                             <td>{x.properties.contentLength}</td>
                             <td>
-                                <img height="200" width="200" alt={x.name} src={'https://images-func-zeckcg7jlal6q.azurewebsites.net/api/image/' + x.name} />
+                                <img height="100" width="100" alt={x.name} src={props.imageFuncUrl + x.name} />
                             </td>
                         </tr>
                     })

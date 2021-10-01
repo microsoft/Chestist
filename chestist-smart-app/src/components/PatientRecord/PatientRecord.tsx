@@ -22,7 +22,11 @@ const PatientRecord: FC<PatientRecordProps> = ({ resources }) => {
   return (
     <div>
       <PatientVisualizer patient={patient} />
-      <BlobView />
+      <BlobView 
+        clientId="8a097d51-6cb3-49b7-8e2a-d9d3ad192584" 
+        tenantId="c2c1d092-cf24-4636-a284-203c93601579" 
+        storageAccount="chestistdemo" 
+        imageFuncUrl="https://images-func-zeckcg7jlal6q.azurewebsites.net/api/image/" />
       <MediaVisualizer rows={getResourceByType(resources, 'Media')} />
     </div>
   );
