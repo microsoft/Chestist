@@ -1,3 +1,5 @@
+[Checkout](https://github.com/microsoft/emerging-opportunities) our other projects!
+
 # Chestist
 This project uses a sample dataset of chest X-rays from the NIH to train a CNN model. The goal is for the model to learn how to detect anomolies and areas of interest.
 
