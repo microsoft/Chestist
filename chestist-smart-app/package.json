@@ -18,7 +18,7 @@
     "fhir-mapper": "^3.1.2",
     "fhir-visualizers": "pjirsa/fhir-visualizers",
     "fhirclient": "^2.3.10",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "ohif-core": "^0.11.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
